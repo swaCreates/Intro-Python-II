@@ -11,7 +11,15 @@ class Room:
         self.w_to= None
 
     def __str__(self):
-        return f'{self.name} {self.description}'
+        output = f"You are currently at {self.name} \nWhere: {self.description} \n"
 
-    # def __str__(self):
-    #     output = 
+        if self.n_to:
+            output += f'To the north [n] is: ' + self.n_to.name + '\n'
+        if self.s_to:
+            output += f'To the south [s] is: ' + self.s_to.name + '\n'
+        if self.e_to:
+            output += f'To the east [e] is: ' + self.e_to.name + '\n'
+        if self.w_to:
+            output += f'To the west [w] is: ' + self.w_to.name + '\n'
+        
+        return output

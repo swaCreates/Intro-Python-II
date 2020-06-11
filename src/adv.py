@@ -38,12 +38,22 @@ room['treasure'].s_to = room['narrow']
 # Main
 #
 
+choice = ['n', 's', 'e', 'w', 'q']
+
 # Make a new player object that is currently in the 'outside' room.
 
-name = input('Enter a name for your character: ')
-current_room = room['outside'].name
-player_1 = Player(name, current_room)
-print(player_1)
+while True:
+    print('press [q] to quit the game')
+    name = input('Enter a name for your character: ' ).lower()
+    if name == '':
+        break
+    if name == 'q':
+        break
+    else:
+        current_room = room['outside'].name
+        player_1 = Player(name, current_room)
+        print(player_1)
+        break
 
 # Write a loop that:
 #
@@ -56,37 +66,33 @@ print(player_1)
 #
 # If the user enters "q", quit the game.
 
-choice = ['n', 's', 'e', 'w', 'q']
-
 while True:
-    choice = input('Choose your narrow path wisely: ').lower()
+    if name == '':
+        print(f'Please provide character name')
+        break
+    elif name == 'q':
+        print('You have quit the game')
+        break
+     
+    print('press [q] to quit the game')
+    choice = input('Choose your narrow path wisely: [n] [s] [e] [w]  ').lower()
     no_room_err= 'The room you have chosen has been cloaked. We cannot find it!'
 
     if choice == 'q':
+        print('You have quit the game, thank you for playing :)')
         break
-    elif choice == 'n':
-        if room['outside'].n_to is not None:
+    if choice == 'n':
+        if player_1.current_room.n_to is not None: # could also remove is not None
             player_1.current_room= room['foyer']
             print(player_1.current_room)
         else:
             print(no_room_err)
     elif choice == 's':
-        if room['foyer'].s_to is not None:
+        if player_1.current_room.s_to is not None:
             player_1.current_room= room['outside']
             print(player_1.current_room)
         else:
             print(no_room_err)
-    elif choice == 'e':
-        if room['outside'].n_to is not None:
-            player_1.current_room= room['foyer']
-            print(player_1.current_room)
-        else:
-            print(no_room_err)
-    elif choice == 'n':
-        if room['outside'].n_to is not None:
-            player_1.current_room= room['foyer']
-            print(player_1.current_room)
-        else:
-            print(no_room_err)
     else:
-        print('You cannot not waiver from the path before you! Choose again!')
+        print('You cannot waiver to this path! Choose again!')
+   
