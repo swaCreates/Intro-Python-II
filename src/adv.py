@@ -1,4 +1,5 @@
 from room import Room
+from player import Player
 
 # Declare all the rooms
 
@@ -39,6 +40,11 @@ room['treasure'].s_to = room['narrow']
 
 # Make a new player object that is currently in the 'outside' room.
 
+name = input('Enter a name for your character: ')
+current_room = room['outside'].name
+player_1 = Player(name, current_room)
+print(player_1)
+
 # Write a loop that:
 #
 # * Prints the current room name
@@ -49,3 +55,38 @@ room['treasure'].s_to = room['narrow']
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
+
+choice = ['n', 's', 'e', 'w', 'q']
+
+while True:
+    choice = input('Choose your narrow path wisely: ').lower()
+    no_room_err= 'The room you have chosen has been cloaked. We cannot find it!'
+
+    if choice == 'q':
+        break
+    elif choice == 'n':
+        if room['outside'].n_to is not None:
+            player_1.current_room= room['foyer']
+            print(player_1.current_room)
+        else:
+            print(no_room_err)
+    elif choice == 's':
+        if room['foyer'].s_to is not None:
+            player_1.current_room= room['outside']
+            print(player_1.current_room)
+        else:
+            print(no_room_err)
+    elif choice == 'e':
+        if room['outside'].n_to is not None:
+            player_1.current_room= room['foyer']
+            print(player_1.current_room)
+        else:
+            print(no_room_err)
+    elif choice == 'n':
+        if room['outside'].n_to is not None:
+            player_1.current_room= room['foyer']
+            print(player_1.current_room)
+        else:
+            print(no_room_err)
+    else:
+        print('You cannot not waiver from the path before you! Choose again!')
