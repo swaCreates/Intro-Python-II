@@ -1,6 +1,7 @@
 # Implement a class to hold room information. This should have name and
 # description attributes.
 
+
 class Room:
     def __init__(self, name, description):
         self.name= name
@@ -9,9 +10,11 @@ class Room:
         self.s_to= None
         self.e_to= None
         self.w_to= None
+        self.items = []
 
     def __str__(self):
-        output = f"You are currently at {self.name} \nWhere: {self.description} \n"
+        output = f"You are currently at {self.name} \nWhere: {self.description} \nItems:{self.items}"
+        
 
         if self.n_to:
             output += f'To the north [n] is: ' + self.n_to.name + '\n'

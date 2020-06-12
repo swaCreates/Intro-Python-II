@@ -1,5 +1,6 @@
 from room import Room
 from player import Player
+from item import Item
 
 # Declare all the rooms
 
@@ -74,6 +75,10 @@ while True:
     elif name == 'q':
         print('You have quit the game')
         break
+
+    room['outside'].items.append(Item('Adventure map', 'can help you find the hidden rooms which no man has ever found!'))
+
+    print(room['outside'].items)
      
     print('press [q] to quit the game')
     choice = input(f'{player_1.name} choose your narrow path wisely: [n] [s] [e] [w]  ').lower()
@@ -85,7 +90,7 @@ while True:
     if choice == 'n':
         #  we want to test our current room against the room we are trying to go to, and see if we can move there
 
-        if player_1.current_room == room['outside']: # could also remove is not None
+        if player_1.current_room == room['outside']:
             player_1.current_room= room['foyer']
             print(player_1.current_room)
         elif player_1.current_room == room['foyer']: 
