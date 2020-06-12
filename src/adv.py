@@ -34,6 +34,7 @@ room['narrow'].w_to = room['foyer']
 room['narrow'].n_to = room['treasure']
 room['treasure'].s_to = room['narrow']
 
+
 #
 # Main
 #
@@ -44,13 +45,13 @@ choice = ['n', 's', 'e', 'w', 'q']
 
 while True:
     print('press [q] to quit the game')
-    name = input('Enter a name for your character: ' ).lower()
+    name = input('Enter a name for your character: ' )
     if name == '':
         break
     if name == 'q':
         break
     else:
-        current_room = room['outside'].name
+        current_room = room['outside']
         player_1 = Player(name, current_room)
         print(player_1)
         break
@@ -75,21 +76,47 @@ while True:
         break
      
     print('press [q] to quit the game')
-    choice = input('Choose your narrow path wisely: [n] [s] [e] [w]  ').lower()
+    choice = input(f'{player_1.name} choose your narrow path wisely: [n] [s] [e] [w]  ').lower()
     no_room_err= 'The room you have chosen has been cloaked. We cannot find it!'
 
     if choice == 'q':
         print('You have quit the game, thank you for playing :)')
         break
     if choice == 'n':
-        if player_1.current_room.n_to is not None: # could also remove is not None
+        #  we want to test our current room against the room we are trying to go to, and see if we can move there
+
+        if player_1.current_room == room['outside']: # could also remove is not None
             player_1.current_room= room['foyer']
+            print(player_1.current_room)
+        elif player_1.current_room == room['foyer']: 
+            player_1.current_room= room['overlook']
+            print(player_1.current_room)
+        elif player_1.current_room == room['narrow']:
+            player_1.current_room= room['treasure']
             print(player_1.current_room)
         else:
             print(no_room_err)
     elif choice == 's':
-        if player_1.current_room.s_to is not None:
+        if player_1.current_room == room['foyer']:
             player_1.current_room= room['outside']
+            print(player_1.current_room)
+        elif player_1.current_room == room['overlook']:
+            player_1.current_room= room['foyer']
+            print(player_1.current_room)
+        elif player_1.current_room == room['treasure']:
+            player_1.current_room= room['narrow']
+            print(player_1.current_room)
+        else:
+            print(no_room_err)
+    elif choice == 'e':
+        if player_1.current_room == room['foyer']:
+            player_1.current_room= room['narrow']
+            print(player_1.current_room)
+        else:
+            print(no_room_err)
+    elif choice == 'w':
+        if player_1.current_room == room['narrow']:
+            player_1.current_room= room['foyer']
             print(player_1.current_room)
         else:
             print(no_room_err)
