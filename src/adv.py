@@ -45,7 +45,7 @@ choice = ['n', 's', 'e', 'w', 'q']
 # Make a new player object that is currently in the 'outside' room.
 
 while True:
-    print('press [q] to quit the game')
+    print('\npress [q] to quit the game')
     name = input('Enter a name for your character: ' )
     if name == '':
         break
@@ -70,10 +70,10 @@ while True:
 
 while True:
     if name == '':
-        print(f'Please provide character name')
+        print(f'Please provide character name\n')
         break
     elif name == 'q':
-        print('You have quit the game')
+        print('\nYou have quit the game')
         break
 
     room['outside'].items.append(Item('Adventure map', 'can help you find the hidden rooms which no man has ever found!'))
@@ -81,11 +81,11 @@ while True:
     print(room['outside'].items)
      
     print('press [q] to quit the game')
-    choice = input(f'{player_1.name} choose your narrow path wisely: [n] [s] [e] [w]  ').lower()
+    choice = input(f'\n{player_1.name} choose your narrow path wisely: [n] [s] [e] [w] ').lower()
     no_room_err= 'The room you have chosen has been cloaked. We cannot find it!'
 
     if choice == 'q':
-        print('You have quit the game, thank you for playing :)')
+        print('\nYou have quit the game, thank you for playing :)\n')
         break
     if choice == 'n':
         #  we want to test our current room against the room we are trying to go to, and see if we can move there

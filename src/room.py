@@ -13,11 +13,11 @@ class Room:
         self.items = []
 
     def __str__(self):
-        output = f"You are currently at {self.name} \nWhere: {self.description} \nItems:{self.items}"
+        output = f"\nYou are currently at {self.name} \nWhere: {self.description} \nItems in this room:{self.items}\n"
         
 
         if self.n_to:
-            output += f'To the north [n] is: ' + self.n_to.name + '\n'
+            output += f'\nTo the north [n] is: ' + self.n_to.name + '\n'
         if self.s_to:
             output += f'To the south [s] is: ' + self.s_to.name + '\n'
         if self.e_to:
