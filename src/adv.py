@@ -35,16 +35,25 @@ room['narrow'].w_to = room['foyer']
 room['narrow'].n_to = room['treasure']
 room['treasure'].s_to = room['narrow']
 
-
 #
 # Main
 #
+
+#  creating items in rooms
+
+map = Item('map', 'can help you find the hidden rooms which no man has ever found!')
+lantern= Item('lantern', 'this might help with the dim lighting')
+
+room['outside'].items.append(map.name)
+room['outside'].items.append(lantern.name)
 
 choice = ['n', 's', 'e', 'w', 'q']
 
 # Make a new player object that is currently in the 'outside' room.
 
 while True:
+
+    print('\nWelcome to the Adventure Game! Ready to start?')
     print('\npress [q] to quit the game')
     name = input('Enter a name for your character: ' )
     if name == '':
@@ -54,6 +63,7 @@ while True:
     else:
         current_room = room['outside']
         player_1 = Player(name, current_room)
+        print(f'\nWelcome {player_1.name}! Let the journey begin!')
         print(player_1)
         break
 
@@ -69,16 +79,13 @@ while True:
 # If the user enters "q", quit the game.
 
 while True:
+
     if name == '':
         print(f'Please provide character name\n')
         break
     elif name == 'q':
         print('\nYou have quit the game')
         break
-
-    room['outside'].items.append(Item('Adventure map', 'can help you find the hidden rooms which no man has ever found!'))
-
-    print(room['outside'].items)
      
     print('press [q] to quit the game')
     choice = input(f'\n{player_1.name} choose your narrow path wisely: [n] [s] [e] [w] ').lower()
